@@ -1,8 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'rake'
-require 'vcr'
 
-describe 'example import_data task' do
+describe 'example:import_data task' do
   # USE THIS TO MAKE SURE YOUR CONFIGURATION FOR VCR IS WORKING CORRECTLY
   # it 'should work correctly' do
   #   VCR.use_cassette 'https' do
@@ -13,25 +12,20 @@ describe 'example import_data task' do
   #   end
   # end
 
-  # before do
-  #   @rake = Rake::Application.new
-  #   @task_name = 'exercise:import_data'
-  #   Rake.application = @rake
-  #   load 'tasks/exercise.rake'
-  #   Rake::Task.define_task(:environment)
+  before(:all) do
+    @rake = Rake::Application.new
+    @task_name = 'exercise:import_data'
+    Rake.application = @rake
+    load 'tasks/exercise.rake'
+    Rake::Task.define_task(:environment)
+  end
 
-  #   # DatabaseCleaner[:active_record].clean
-  # end
+  it 'should populate Case table' do
 
-  # it 'should populate Case table' do
-  #   VCR.use_cassette 'https' do
-
-  #     # DatabaseCleaner[:active_record].cleaning do
-  #     #   binding.pry
-  #     expect(@rake[@task_name].invoke ).not_to be_empty
-  #     binding.pry
-  #    # expect(Case.count).to be > 0
-
-  #   end
-  # end
+    VCR.use_cassette 'https' do
+      expect(Case.count).to eq 0
+      expect(@rake[@task_name].invoke ).not_to be_empty
+      expect(Case.count).to be > 0
+    end
+  end
 end

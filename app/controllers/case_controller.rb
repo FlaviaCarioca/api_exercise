@@ -5,16 +5,17 @@ class CaseController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html {  throw Exception }
+      format.html {  throw Exception } # do not respond to html requests
       format.json { render json: @cases}
-    end     
+    end
   end
 
   private
 
   def set_cases
-    @cases = params[:near].present? ? Case.near([37.50,-122.67],20) : Case.all
-    @cases = @cases.where(case_params) if case_params.present? 
+    #returns cases within 5 miles of the passed longitude and latitude
+    @cases = params[:near].present? ? Case.near(get_date_from_timestamp(timestamp),5) : Case.all
+    @cases = @cases.where(case_params) if case_params.present?
     @cases = @cases.where('opened >= ?',get_date_from_timestamp(params[:since])) if params[:since].present?
   end
 
@@ -24,8 +25,8 @@ class CaseController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def case_params
-       params.permit(:case_id, :opened, :closed, :updated, :status, :responsible_agency, :category, :request_type,
-          :neighborhood, :request_detail, :address, :supervisor_district, :source, :media_url, :longitude,
-          :latitude)
-   end
+    params.permit(:case_id, :opened, :closed, :updated, :status, :responsible_agency, :category, :request_type,
+                  :neighborhood, :request_detail, :address, :supervisor_district, :source, :media_url, :longitude,
+                  :latitude)
+  end
 end

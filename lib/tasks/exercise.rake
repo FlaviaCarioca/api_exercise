@@ -6,10 +6,9 @@ namespace :exercise do
 
     response = Net::HTTP.get_response(URI.parse(source))
 
-
     data = response.body
     result = JSON.parse(data)
-    binding.pry
+
     result.each do |r|
       if(!r["case_id"].to_s.empty?)        
         c = Case.find_or_initialize_by(id: r["case_id"])

@@ -18,26 +18,26 @@ gem 'geocoder'
 
 
 group :development do
-	gem 'spring'
-	gem 'rubocop'
+  gem 'spring'
+  gem 'rubocop'
 end
 
 group :development, :test do
-   gem 'pry'
-   gem 'hirb'
-   gem 'pry-rails'
-   gem 'pry-byebug'
-   gem 'awesome_print'
+  gem 'pry'
+  gem 'hirb'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'awesome_print'
 end
 
-group :test do 
-   gem 'rspec-rails'
-   gem 'factory_girl_rails'
-   gem 'shoulda-matchers'
-   gem 'vcr' # for help with repeating http request in test. It caches the request response
-   gem 'webmock' #works with vcr
-   gem 'database_cleaner'
- end
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem 'vcr' # for help with repeating http request in test. It caches the request response
+  gem 'webmock' #works with vcr
+  gem 'database_cleaner'
+end
 
 
 
