@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  opened: 
+  closed: 
+  updated: 
+  status: 
+  category: 
+  request_type: 
+  request_details: 
+  address: 
+  supervisor_district: 
+  neighborhood: 
+  source: 
+  media_url: 
+  latitude: 
+  longitude: MyString
+
+two:
+  opened: 
+  closed: 
+  updated: 
+  status: 
+  category: 
+  request_type: 
+  request_details: 
+  address: 
+  supervisor_district: 
+  neighborhood: 
+  source: 
+  media_url: 
+  latitude: 
+  longitude: MyString
